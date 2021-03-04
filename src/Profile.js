@@ -95,7 +95,7 @@ class Profile extends Component {
     axios("https://3choices.in/cha/contact/").then((res) => {
       this.setState({
         pre: res.data.filter(
-          ({ user }) => user === JSON.parse(localStorage.getItem("userIDKunal"))
+          ({ user }) => user === JSON.parse(localStorage.getItem("UserId"))
         ),
       });
     });
@@ -150,8 +150,7 @@ class Profile extends Component {
           // sd  - userid
           // data6 -user
           data6: res.data.filter(
-            ({ user }) =>
-              user === JSON.parse(localStorage.getItem("userIDKunal"))
+            ({ user }) => user === JSON.parse(localStorage.getItem("UserId"))
           ),
 
           datac: res.data.filter(
@@ -508,13 +507,14 @@ class Profile extends Component {
 
   AcceptFriendRequest = (id, fre) => {
     localStorage.setItem("idf", id);
-    this.setState({ load: true });
-    this.setState({ loading: true });
-
+    // this.setState({ load: true });
+    // this.setState({ loading: true });\
+    console.log(this.state.pre);
     if (this.state.pre == 0) {
+      console.log(" I am Accpert Rqust");
       let idf = JSON.parse(localStorage.getItem("idf"));
       let form_dat = new FormData();
-      form_dat.append("user", localStorage.getItem("userIDKunal"));
+      form_dat.append("user", localStorage.getItem("UserId"));
 
       let url = "https://3choices.in/cha/contact/";
       axios.post(url, form_dat);
@@ -572,7 +572,7 @@ class Profile extends Component {
         localStorage.getItem("ids4"),
       ];
       let fr_dat = new FormData();
-      fr_dat.append("user", localStorage.getItem("userIDKunal"));
+      fr_dat.append("user", localStorage.getItem("UserId"));
       fr_dat.append("friends", comin);
 
       let uld = "https://3choices.in/cha/contact/";
@@ -631,7 +631,7 @@ class Profile extends Component {
     if (this.state.pre == 0) {
       let idf = JSON.parse(localStorage.getItem("idf"));
       let form_dat = new FormData();
-      form_dat.append("user", localStorage.getItem("userIDKunal"));
+      form_dat.append("user", localStorage.getItem("UserId"));
 
       let url = "https://3choices.in/cha/contact/";
       axios.post(url, form_dat);
@@ -689,7 +689,7 @@ class Profile extends Component {
         localStorage.getItem("ids4"),
       ];
       let fr_dat = new FormData();
-      fr_dat.append("user", localStorage.getItem("userIDKunal"));
+      fr_dat.append("user", localStorage.getItem("UserId"));
       fr_dat.append("friends", comin);
 
       let uld = "https://3choices.in/cha/contact/";
@@ -708,11 +708,14 @@ class Profile extends Component {
       let ul = "https://3choices.in/profile/note/";
       axios.post(ul, form_daa);
 
+      let form_dakoda = new FormData();
+      form_dakoda.append("messages", []);
+      form_dakoda.append("participants", [
+        fre,
+        localStorage.getItem("username"),
+      ]);
       axios
-        .post("https://3choices.in/cha/create/", {
-          messages: [],
-          participants: [fre, localStorage.getItem("username")],
-        })
+        .post("https://3choices.in/cha/create", form_dakoda)
         .then((res) => {
           this.setState({ loading: false });
           let form_das = new FormData();
