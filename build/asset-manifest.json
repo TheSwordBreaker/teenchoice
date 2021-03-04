@@ -1,14 +1,14 @@
 {
   "main.css": "/static/css/main.1f06db08.chunk.css",
-  "main.js": "/static/js/main.c1a8959e.chunk.js",
-  "main.js.map": "/static/js/main.c1a8959e.chunk.js.map",
+  "main.js": "/static/js/main.3f7c0ed5.chunk.js",
+  "main.js.map": "/static/js/main.3f7c0ed5.chunk.js.map",
   "static/css/1.43e390f1.chunk.css": "/static/css/1.43e390f1.chunk.css",
   "static/js/1.43f35b7a.chunk.js": "/static/js/1.43f35b7a.chunk.js",
   "static/js/1.43f35b7a.chunk.js.map": "/static/js/1.43f35b7a.chunk.js.map",
   "runtime~main.js": "/static/js/runtime~main.229c360f.js",
   "runtime~main.js.map": "/static/js/runtime~main.229c360f.js.map",
   "static/media/re.png": "/static/media/re.92ebd741.png",
-  "static/media/semantic.min.css": "/static/media/flags.9c74e172.png",
+  "static/media/semantic.min.css": "/static/media/brand-icons.a1a749e8.svg",
   "static/media/feature-tile-icon-01.svg": "/static/media/feature-tile-icon-01.0f9928d7.svg",
   "static/media/feature-tile-icon-02.svg": "/static/media/feature-tile-icon-02.bd39f304.svg",
   "static/media/feature-tile-icon-03.svg": "/static/media/feature-tile-icon-03.66f37ba5.svg",
@@ -21,6 +21,6 @@
   "static/css/main.1f06db08.chunk.css.map": "/static/css/main.1f06db08.chunk.css.map",
   "static/css/1.43e390f1.chunk.css.map": "/static/css/1.43e390f1.chunk.css.map",
   "index.html": "/index.html",
-  "precache-manifest.3393e15cde77c835c3cb4fee9a966e79.js": "/precache-manifest.3393e15cde77c835c3cb4fee9a966e79.js",
+  "precache-manifest.a5099df910212955971eb6478390e1e0.js": "/precache-manifest.a5099df910212955971eb6478390e1e0.js",
   "service-worker.js": "/service-worker.js"
 }
