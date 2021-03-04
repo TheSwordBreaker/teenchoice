@@ -5,24 +5,24 @@ import {
   Grid,
   Header,
   Message,
-  Segment
+  Segment,
 } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink, Link, Redirect } from "react-router-dom";
 import { authLogin } from "../store/actions/auth";
-import Logo from '../components/layout/partials/Logo';
+import Logo from "../components/layout/partials/Logo";
 
 class LoginForm extends React.Component {
   state = {
     email: "",
-    password: ""
+    password: "",
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     const { email, password } = this.state;
     this.props.login(email, password);
@@ -34,7 +34,6 @@ class LoginForm extends React.Component {
     localStorage.setItem("token", token);
 
     return (
-
       <Grid
         textAlign="center"
         style={{ height: "100vh" }}
@@ -80,11 +79,11 @@ class LoginForm extends React.Component {
                 </Button>
               </Segment>
             </Form>
-            <Message>
-              New to us? <NavLink to="/log">Sign Up</NavLink>
-            </Message>
+            <div className="login-bottom">
+              <NavLink to="/signup2">Sign Up</NavLink>
 
-
+              <Link to="/choices">Forget Password ?</Link>
+            </div>
           </React.Fragment>
         </Grid.Column>
       </Grid>
@@ -92,24 +91,18 @@ class LoginForm extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     loading: state.auth.loading,
     error: state.auth.error,
-    token: state.auth.token
+    token: state.auth.token,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    login: (email, password) => dispatch(authLogin(email, password))
+    login: (email, password) => dispatch(authLogin(email, password)),
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(LoginForm);
-
-
-
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
