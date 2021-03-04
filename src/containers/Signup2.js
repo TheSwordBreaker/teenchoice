@@ -32,6 +32,11 @@ class RegistrationForm extends React.Component {
     password2: "",
     formError: {},
   };
+  componentDidUpdate() {
+    console.log(this.props.token);
+    if (this.props.token) {
+    }
+  }
 
   handleSubmit = async (e) => {
     const { username, Phone_Number, password, password2 } = this.state;
@@ -64,67 +69,62 @@ class RegistrationForm extends React.Component {
     }
 
     this.setState({ ...this.state, formError: errors });
-    var recaptcha = await new firebase.auth.RecaptchaVerifier(
-      "SubmitPhoneNumber",
-      { size: "invisible" }
-    );
+
     // const { username, email, password, password2 } = this.state;
     if (Object.keys(errors).length === 0) {
       console.log(errors);
+      try {
+        if (
+          await this.props.signup(username, Phone_Number, password, password2)
+        ) {
+          var recaptcha = await new firebase.auth.RecaptchaVerifier(
+            "SubmitPhoneNumber",
+            { size: "invisible" }
+          );
 
-      this.props.signup(username, Phone_Number, password, password2);
-      console.log(localStorage.getItem("token"));
-      if (localStorage.getItem("token") != null) {
-        document.querySelector("h4").textContent = "Wait....";
+          console.log(localStorage.getItem("token"));
+          if (localStorage.getItem("token") != null) {
+            document.querySelector("h4").textContent = "Wait....";
 
-        var number = this.state.Phone_Number;
+            var number = this.state.Phone_Number;
 
-        //   window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
-        //     "sign-in-button",
-        //     {
-        //       size: "invisible",
-        //       callback: (response) => {
-        //         // reCAPTCHA solved, allow signInWithPhoneNumber.
-        //         onSignInSubmit();
-        //       },
-        //     }
-        //   );
+            firebase
+              .auth()
+              .signInWithPhoneNumber(number, recaptcha)
+              .then(async function(e) {
+                const { value: code } = await MySwal.fire({
+                  title: "Enter your Otp",
+                  input: "text",
+                  inputLabel: "Your Otp",
+                  allowOutsideClick: false,
+                  showCancelButton: true,
+                  inputValidator: (value) => {
+                    if (!value) {
+                      return "You need to enter Otp";
+                    }
+                  },
+                });
 
-        firebase
-          .auth()
-          .signInWithPhoneNumber(number, recaptcha)
-          .then(async function(e) {
-            const { value: code } = await MySwal.fire({
-              title: "Enter your Otp",
-              input: "text",
-              inputLabel: "Your Otp",
-              allowOutsideClick: false,
-              showCancelButton: true,
-              inputValidator: (value) => {
-                if (!value) {
-                  return "You need to enter Otp";
-                }
-              },
-            });
+                if (code === null) return;
 
-            if (code === null) return;
+                e.confirm(code)
+                  .then(function(result) {
+                    localStorage.setItem("status", "okay");
 
-            e.confirm(code)
-              .then(function(result) {
-                localStorage.setItem("status", "okay");
-
-                document.querySelector("label").textContent +=
-                  result.user.phoneNumber + "Number verified";
-                window.location.reload();
+                    document.querySelector("label").textContent +=
+                      result.user.phoneNumber + "Number verified";
+                    window.location.reload();
+                  })
+                  .catch(function(error) {
+                    console.error(error);
+                  });
               })
               .catch(function(error) {
                 console.error(error);
               });
-          })
-          .catch(function(error) {
-            console.error(error);
-          });
-      }
+          }
+        }
+      } catch (e) {}
     }
   };
 
@@ -192,6 +192,7 @@ class RegistrationForm extends React.Component {
             >
               Signup to your account
             </Header>
+
             {token ? (
               <h5 style={{ Color: "green", marginBottom: "0px" }}>
                 Welcome! Enter OTP{" "}
@@ -208,6 +209,8 @@ class RegistrationForm extends React.Component {
                 After Signing Up Check Your Inbox for Verification
               </h5>
             )}
+
+            <h4 />
             <Form size="large" onSubmit={this.handleSubmit}>
               <Segment stacked>
                 <Form.Input

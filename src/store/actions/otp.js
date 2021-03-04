@@ -75,39 +75,65 @@ export const authLogin = (email, password) => {
   };
 };
 export const authSignup = (username, Phone_Number, password, password2) => {
-  return (dispatch) => {
-    dispatch(authStart());
-    axios
-      .post("https://3choices.in/auths/reg/", {
-        username: username,
-        Phone_Number: Phone_Number,
-        password: password,
-        password2: password2,
-      })
-      .then((res) => {
-        const token = res.data.token;
-        const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
-        localStorage.setItem("token", token);
-        localStorage.setItem("expirationDate", expirationDate);
-        localStorage.setItem("username", username);
+  return (dispatch) =>
+    new Promise(function(resolve, reject) {
+      dispatch(authStart());
 
-        dispatch(authSuccess(token, username));
-        dispatch(checkAuthTimeout(3600));
-      })
-      .catch((err) => {
-        console.log(err);
-        console.log(err.response);
-        console.log(JSON.stringify(err));
-        let errorMessage;
-        if (err.response && err.response.data && err.response.data.msg)
-          errorMessage = err.response.data.msg;
-        else if (err.response && err.response.data)
-          errorMessage =
-            err.response.data[Object.keys(err.response.data)[0]][0];
-        else if (err.message) errorMessage = err.message;
-        dispatch(authFail(errorMessage));
-      });
-  };
+      axios
+        .post("https://3choices.in/auths/reg/", {
+          username: username,
+          Phone_Number: Phone_Number,
+          password: password,
+          password2: password2,
+        })
+        .then((res) => {
+          const token = res.data.token;
+          const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
+          localStorage.setItem("token", token);
+          localStorage.setItem("expirationDate", expirationDate);
+          localStorage.setItem("username", username);
+
+          dispatch(authSuccess(token, username));
+          dispatch(checkAuthTimeout(3600));
+          return resolve(true);
+        })
+        .catch((err) => {
+          console.log(err);
+          console.log(err.response);
+          console.log(Array.isArray(err.response.data));
+          console.log(JSON.stringify(err));
+          let errorMessage;
+          if (err.response && err.response.data && err.response.data.msg)
+            errorMessage = err.response.data.msg;
+          else if (
+            err.response &&
+            err.response.data &&
+            Array.isArray(err.response.data)
+          )
+            errorMessage = err.response.data[0];
+          else if (
+            err.response &&
+            err.response.data &&
+            !Array.isArray(err.response.data) &&
+            Object.keys(err.response.data).length > 1
+          )
+            errorMessage =
+              err.response.data[Object.keys(err.response.data)[0]][0];
+          else if (
+            err.response &&
+            err.response.data &&
+            !Array.isArray(err.response.data) &&
+            Array.isArray(err.response.data[Object.keys(err.response.data)[0]])
+          )
+            errorMessage =
+              err.response.data[Object.keys(err.response.data)[0]][0];
+          else if (err.response && err.response.data)
+            errorMessage = err.response.data[Object.keys(err.response.data)[0]];
+          else if (err.message) errorMessage = err.message;
+          dispatch(authFail(errorMessage));
+          reject(err);
+        });
+    });
 };
 
 export const authCheckState = () => {

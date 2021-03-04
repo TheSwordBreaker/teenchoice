@@ -4694,4 +4694,11 @@ div#columns-kunal figure img:hover {
   margin: -5px 0px 0px;
   font-size: 0.8rem;
 }
+
+.PhoneInputCountry {
+  background: white;
+  color: black;
+  padding: 5px;
+  border-radius: 5px;
+}
 /*# sourceMappingURL=main.fdc7e0db.chunk.css.map */
