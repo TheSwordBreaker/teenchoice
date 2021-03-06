@@ -807,7 +807,7 @@ class Profile extends Component {
     this.setState({ activeIndex: newIndex });
   };
 
-  changedShow = () => this.setState({ show: !this.state.show });
+  changedshow = () => this.setState({ show: !this.state.show });
 
   ShowHideDiv = (btnPassport) => {
     if (btnPassport.value == "Yes") {
@@ -914,9 +914,9 @@ class Profile extends Component {
     return (
       <div>
         <DashBoardNavbar
-          DateRequestData={DateRequestData}
-          friendRequestData={friendRequestData}
-          changedShow={this.changedShow}
+          DateRequestData={DateRequestData || []}
+          friendRequestData={friendRequestData || []}
+          changedshow={this.changedshow}
         />
 
         {/* <Accordion style={{ position: "relative", top: `${q}` }}>

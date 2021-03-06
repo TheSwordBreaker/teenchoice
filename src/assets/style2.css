@@ -4585,7 +4585,7 @@ div#columns-kunal figure img:hover {
   transform: scale(1.11);
 }
 
-@media screen and (max-width: 750px) {
+@media (min-width: 576px) and (max-width: 750px) {
   #columns-kunal {
     column-gap: 0px;
   }
@@ -4601,6 +4601,7 @@ div#columns-kunal figure img:hover {
   }
   #columns-kunal figure {
     margin: 20px 10px !important;
+    /* width: 40% !important; */
   }
 }
 @media screen and (min-width: 564px) {
@@ -4701,4 +4702,28 @@ div#columns-kunal figure img:hover {
   padding: 5px;
   border-radius: 5px;
 }
+
+@media screen and (max-width: 576px) {
+  .ui.center.aligned.header {
+    margin: 0 !important;
+  }
+}
+/* 
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+} */
 /*# sourceMappingURL=main.fdc7e0db.chunk.css.map */

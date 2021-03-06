@@ -4,6 +4,7 @@ import AppRoute from "./utils/AppRoute";
 import ScrollReveal from "./utils/ScrollReveal";
 import ReactGA from "react-ga";
 import "./assets/style2.css";
+// import "./assets/scss/style.scss";
 
 // Layouts
 import LayoutDefault from "./layouts/LayoutDefault";

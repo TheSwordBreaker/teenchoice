@@ -20,6 +20,9 @@ const defaultProps = {
   hideSignin: false,
   bottomOuterDivider: false,
   bottomDivider: false,
+  DateRequestData: [],
+  friendRequestData: [],
+  changedshow: () => {},
 };
 
 const DashBoardNavbar = ({
@@ -136,7 +139,7 @@ const DashBoardNavbar = ({
                     <li className="nav-item">
                       <h5 onClick={closeMenu}> Notification</h5>
                     </li> */}
-                    <li className="request" onClick={props.changedShow}>
+                    <li className="request" onClick={props.changedshow}>
                       <Link>
                         <h5 onClick={closeMenu}> Request</h5>
                         {friendRequestData.length + DateRequestData.length !==
@@ -157,13 +160,11 @@ const DashBoardNavbar = ({
                     <li>
                       {props.authenticated &
                       (localStorage.getItem("status") != null) ? (
-                        <h5 header>
-                          <h5
-                            style={{ cursor: "pointer" }}
-                            onClick={() => props.logout()}
-                          >
-                            Logout
-                          </h5>
+                        <h5
+                          style={{ cursor: "pointer" }}
+                          onClick={() => props.logout()}
+                        >
+                          Logout
                         </h5>
                       ) : (
                         <Link to="/login2">

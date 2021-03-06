@@ -36,7 +36,7 @@ const Hero = ({
     axios.get("https://3choices.in/profile/profile/").then(({ data }) => {
       let randomData = Array.from({ length: data.length }, () =>
         Math.floor(Math.random() * data.length)
-      ).slice(0, 10);
+      ).slice(0, 100);
       setProfileData(data.filter((x, i) => randomData.includes(i)));
     });
   }, []);

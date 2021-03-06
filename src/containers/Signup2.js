@@ -84,7 +84,8 @@ class RegistrationForm extends React.Component {
 
           console.log(localStorage.getItem("token"));
           if (localStorage.getItem("token") != null) {
-            document.querySelector("h4").textContent = "Wait....";
+            document.querySelector("h4").textContent =
+              "Otp Is Sent on Your Given Number ";
 
             var number = this.state.Phone_Number;
 
@@ -98,26 +99,25 @@ class RegistrationForm extends React.Component {
                   inputLabel: "Your Otp",
                   allowOutsideClick: false,
                   showCancelButton: true,
+                  showLoaderOnConfirm: true,
                   inputValidator: (value) => {
                     if (!value) {
                       return "You need to enter Otp";
                     }
+
+                    e.confirm(value)
+                      .then(function(result) {
+                        localStorage.setItem("status", "okay");
+
+                        document.querySelector("h4").textContent +=
+                          result.user.phoneNumber + "Number verified";
+                        window.location.reload();
+                      })
+                      .catch(function(error) {
+                        return "Incorrect Otp is Added! check again";
+                      });
                   },
                 });
-
-                if (code === null) return;
-
-                e.confirm(code)
-                  .then(function(result) {
-                    localStorage.setItem("status", "okay");
-
-                    document.querySelector("label").textContent +=
-                      result.user.phoneNumber + "Number verified";
-                    window.location.reload();
-                  })
-                  .catch(function(error) {
-                    console.error(error);
-                  });
               })
               .catch(function(error) {
                 console.error(error);
@@ -176,7 +176,7 @@ class RegistrationForm extends React.Component {
 
         <Grid
           textAlign="center"
-          style={{ height: "100vh" }}
+          style={{ height: "140vh" }}
           verticalAlign="middle"
         >
           <Grid.Column style={{ maxWidth: 450 }}>
@@ -192,7 +192,6 @@ class RegistrationForm extends React.Component {
             >
               Signup to your account
             </Header>
-
             {token ? (
               <h5 style={{ Color: "green", marginBottom: "0px" }}>
                 Welcome! Enter OTP{" "}
@@ -209,8 +208,7 @@ class RegistrationForm extends React.Component {
                 After Signing Up Check Your Inbox for Verification
               </h5>
             )}
-
-            <h4 />
+            <h4></h4>
             <Form size="large" onSubmit={this.handleSubmit}>
               <Segment stacked>
                 <Form.Input
