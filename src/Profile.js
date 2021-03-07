@@ -77,9 +77,20 @@ class Profile extends Component {
 
   componentDidMount() {
     localStorage.setItem("DisplayCount", 0);
+
     this.setState({
       loading: true,
       count: JSON.parse(parseInt(localStorage.getItem("DisplayCount"))),
+    });
+
+    axios("https://3choices.in/profile/profile/").then((res) => {
+      var temp = res.data.filter(
+        ({ parent_user }) => parent_user === localStorage.getItem("username")
+      );
+      localStorage.setItem("dx", JSON.stringify(temp));
+      if (localStorage.getItem("location")) {
+        localStorage.setItem("location", temp[0].location);
+      }
     });
 
     const APIKEY = "c2514daffcbd261b8f9940d30fc01d0a";
@@ -100,17 +111,6 @@ class Profile extends Component {
       });
     });
 
-    axios("https://3choices.in/profile/profile/").then((res) => {
-      localStorage.setItem(
-        "dx",
-        JSON.stringify(
-          res.data.filter(
-            ({ parent_user }) =>
-              parent_user === localStorage.getItem("username")
-          )
-        )
-      );
-    });
     // GIve All user names
     axios("https://3choices.in/cha/user/").then((res) => {
       this.setState({

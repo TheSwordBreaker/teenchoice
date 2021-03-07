@@ -140,7 +140,7 @@ const DashBoardNavbar = ({
                       <h5 onClick={closeMenu}> Notification</h5>
                     </li> */}
                     <li className="request" onClick={props.changedshow}>
-                      <Link>
+                      <Link to="">
                         <h5 onClick={closeMenu}> Request</h5>
                         {friendRequestData.length + DateRequestData.length !==
                           0 && (

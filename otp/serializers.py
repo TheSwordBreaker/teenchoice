@@ -22,11 +22,10 @@ class CreateUserSerializer(serializers.ModelSerializer):
         email = validated_data['Phone_Number']
         password = validated_data['password']
         password2 = validated_data['password2']
-        # if (email and User.objects.filter(email= email).exclude(username=username).exists()
-        # ):
-        #     raise serializers.ValidationError(
-        #         {'Phone': 'Phone Number already registered'}
-        #     )
+        if (email and User.objects.filter(email= email).exclude(username=username).exists()):
+            raise serializers.ValidationError(
+                {'Phone': 'Phone Number already registered'}
+            )
         if password != password2:
             raise serializers.ValidationError({'password': 'The two passwords differ.'})
         user = User(username=username, email =email)
