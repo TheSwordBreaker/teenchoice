@@ -308,7 +308,10 @@ class Profile extends Component {
           ),
           loading: false,
         });
-        console.log(this.state);
+        console.log("All femals");
+        // console.log(
+        //   this.state.allProfiles.filter((x) => /female/i.test(x.sex))
+        // );
         if (JSON.parse(parseInt(localStorage.getItem("DisplayCount"))) == 1) {
           this.setState({ displayPeople: this.state.data.slice(0, 2) });
         } else if (this.state.count == 2) {
@@ -316,7 +319,7 @@ class Profile extends Component {
         } else {
           this.setState({ displayPeople: this.state.data.slice(0, 3) });
         }
-        console.log(this.state.displayPeople);
+        // console.log(this.state.displayPeople);
       })
       .catch((err) => {
         this.setState({ error: err, loading: false });
