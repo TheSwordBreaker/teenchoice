@@ -74,7 +74,7 @@ class Header extends React.Component {
             )}
 
             <h5 color="purple"> Hey! {localStorage.getItem("username")}</h5>
-            <a href="/cxz">
+            <a href="/chatSelect">
               <IconButton>
                 <Icon
                   name="paper plane"

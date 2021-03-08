@@ -21,7 +21,7 @@ import Login2Form from "./containers/Login2";
 import Signup from "./containers/Signup";
 import Signup2 from "./containers/Signup2";
 import Log from "./containers/Log";
-import Lo from "./cxz";
+import ChatSelect from "./chatSelect";
 import Chat from "./containers/Chat";
 import Hoc from "./hoc/hoc";
 import Chatlayout from "./chatlayout";
@@ -87,7 +87,7 @@ class App extends React.Component {
             <Route exact path="/emails" component={Forget} />
             <Route exact path="/age" component={Age} />
             <Route exact path="/que" component={Que} />
-            <Route exact path="/cxz" component={Lo} />
+            <Route exact path="/chatSelect" component={ChatSelect} />
             <Route exact path="/asd" component={Articles} />
             <Route exact path="/main/products/:productID" component={Basd} />
             <ProtectedRoute exact path="/edit" component={UserProfile} />

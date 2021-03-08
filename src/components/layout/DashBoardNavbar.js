@@ -152,7 +152,7 @@ const DashBoardNavbar = ({
                     </li>
 
                     <li>
-                      <Link to="/cxz">
+                      <Link to="/chatSelect">
                         <h5 onClick={closeMenu}> Chat</h5>
                       </Link>
                     </li>
