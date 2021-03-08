@@ -35,13 +35,13 @@ import Basd from "./pof";
 import Land from "./landing";
 import Age from "./age";
 import Que from "./que";
-import Proflay from "./asd";
+import UserProfile from "./asd";
 import ListExampleFloated from "./reqs";
 import Articles from "./Profind";
 import Intrest from "./l";
 import Loc from "./i";
 import Image from "./im";
-import Bio from "./s";
+import Bio from "./UserProfile";
 import Ed from "./edit";
 import Bg from "./choices";
 import Forget from "./forget";
@@ -90,7 +90,7 @@ class App extends React.Component {
             <Route exact path="/cxz" component={Lo} />
             <Route exact path="/asd" component={Articles} />
             <Route exact path="/main/products/:productID" component={Basd} />
-            <ProtectedRoute exact path="/edit" component={Proflay} />
+            <ProtectedRoute exact path="/edit" component={UserProfile} />
             <ProtectedRoute exact path="/intr" component={Intrest} />
             <ProtectedRoute exact path="/loc" component={Loc} />
             <ProtectedRoute exact path="/img" component={Image} />

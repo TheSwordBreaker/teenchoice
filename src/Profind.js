@@ -31,7 +31,7 @@ import Base from "./ad";
 import Land from "./landing";
 import Age from "./age";
 import Que from "./que";
-import Proflay from "./asd";
+import UserProfile from "./asd";
 
 class App extends React.Component {
   componentDidMount() {
@@ -66,7 +66,7 @@ class App extends React.Component {
             <Route exact path="/land" component={Land} />
             <Route exact path="/age" component={Age} />
             <Route exact path="/que" component={Que} />
-            <ProtectedRoute exact path="/pof" component={Proflay} />
+            <ProtectedRoute exact path="/pof" component={UserProfile} />
           </Switch>
         </Hoc>
       </Router>

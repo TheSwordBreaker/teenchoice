@@ -15,7 +15,7 @@ import {
 } from "semantic-ui-react";
 import DashBoardNavbar from "./components/layout/DashBoardNavbar";
 import Logo from "./components/layout/partials/Logo";
-class Proflay extends React.Component {
+class UserProfile extends React.Component {
   state = {
     parentuser: "",
     bio: "",
@@ -120,4 +120,4 @@ class Proflay extends React.Component {
   }
 }
 
-export default Proflay;
+export default UserProfile;
