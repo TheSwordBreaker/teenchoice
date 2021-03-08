@@ -1,7 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import Hoc from "./hoc/hoc";
-import "./ad.css";
+import "./base.css";
 import { productDetailURL } from "./constants";
 import axios from "axios";
 

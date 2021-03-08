@@ -27,7 +27,7 @@ import ProductDetail from "./Profind";
 
 import Proflayout from "./prof";
 import Profile from "./Profile";
-import Base from "./ad";
+import Base from "./base";
 import Land from "./landing";
 import Age from "./age";
 import Que from "./que";
