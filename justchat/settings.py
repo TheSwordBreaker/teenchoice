@@ -4,8 +4,8 @@ from django.urls import reverse_lazy
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '9nneu#^7_aai*(#(6_qiihu-^k-+%a86&vjh=_i9#(c4^8s51n'
-DEBUG = False
-ALLOWED_HOSTS = ['127.0.0.1:8000','datingobackend.herokuapp.com', 'localhost','http://norsky.shop','http://3choices.in','https://3choices.in','norsky.shop','3choices.in','www.3choices.in','www.norsky.shop','https://norsky.shop','68.183.84.4','0.0.0.0:8000']
+DEBUG = True
+ALLOWED_HOSTS = ['127.0.0.1','127.0.0.1:8000','datingobackend.herokuapp.com', 'localhost','http://norsky.shop','http://3choices.in','https://3choices.in','norsky.shop','3choices.in','www.3choices.in','www.norsky.shop','https://norsky.shop','68.183.84.4','0.0.0.0:8000']
 SECURE_SSL_REDIRECT = False
 INSTALLED_APPS = [
     'Profile',
@@ -49,7 +49,7 @@ TEMPLATES_ROOT = os.path.join(BASE_DIR, "templates")
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS':[ os.path.join(BASE_DIR,'build')],
+        'DIRS':[ os.path.join(BASE_DIR,'build') , os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

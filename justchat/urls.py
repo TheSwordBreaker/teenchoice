@@ -7,8 +7,21 @@ from django.conf.urls.static import static
 from django.conf import settings
 import otp.urls
 import Profile.urls
+
+from rest_framework.schemas import get_schema_view
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+     path('swagger-ui/', TemplateView.as_view(
+        template_name='swagger-ui.html',
+        extra_context={'schema_url':'openapi-schema'}
+    ), name='swagger-ui'),
+     path('openapi', get_schema_view(
+            title="Your Project",
+            description="API for all things …",
+            version="1.0.0"
+        ), name='openapi-schema'),
     path('api-auth/', include('rest_framework.urls')),
     path(r'^', include('django.contrib.auth.urls')),
     path('cha/', include('chat.api.urls')),
